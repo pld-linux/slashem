@@ -1,9 +1,9 @@
-%define		_ver_nodots	%(echo %{version} | tr -d)
-%define		_ver		%(echo %{_ver_nodots} | tr EF ef)
 Summary:	Variant of the roguelike game, NetHack
 Summary(pl):	Wariant Nethacka
 Name:		slashem
 Version:	0.0.6E4F8
+%define		_ver_nodots	%(echo %{version} | tr -d .)
+%define		_ver		%(echo %{_ver_nodots} | tr EF ef)
 Release:	2
 License:	Nethack GPL
 Group:		Applications/Games
