@@ -1,0 +1,127 @@
+diff -ruN slashem-0.0.6E4F7.orig/include/config.h slashem-0.0.6E4F7/include/config.h
+--- slashem-0.0.6E4F7.orig/include/config.h	Thu Feb 28 21:57:10 2002
++++ slashem-0.0.6E4F7/include/config.h	Sat Mar 16 23:26:16 2002
+@@ -52,9 +52,9 @@
+  */
+ #define TTY_GRAPHICS		/* good old tty based graphics */
+ /* #define X11_GRAPHICS */	/* X11 interface */
+-/* #define QT_GRAPHICS */	/* Qt Interface */
++#define QT_GRAPHICS		/* Qt Interface */
+ /* #define KDE */		/* KDE Interface */
+-/* #define GTK_GRAPHICS */	/* GTK Interface */
++#define GTK_GRAPHICS		/* GTK Interface */
+ /* #define GNOME_GRAPHICS */	/* Gnome interface */
+ /* #define PROXY_GRAHICS */	/* Plug-in interfaces (not yet supported) */
+ 
+@@ -153,6 +153,7 @@
+  *		LOGFILE and NEWS refer to files in the playground.
+  */
+ 
++#if 0
+ #ifndef WIZARD		/* allow for compile-time or Makefile changes */
+ # ifndef KR1ED
+ #  define WIZARD  "wizard" /* the person allowed to use the -D option */
+@@ -161,6 +162,7 @@
+ #  define WIZARD_NAME "wizard"
+ # endif
+ #endif
++#endif
+ 
+ #define LOGFILE "logfile"	/* larger file for debugging purposes */
+ #define LOGAREA FILE_AREA_VAR
+@@ -182,8 +184,8 @@
+ 
+ #ifdef UNIX
+ /* path and file name extension for compression program */
+-# define COMPRESS "/usr/bin/compress" /* Lempel-Ziv compression */
+-# define COMPRESS_EXTENSION ".Z"	     /* compress's extension */
++# define COMPRESS "/bin/gzip" /* Lempel-Ziv compression */
++# define COMPRESS_EXTENSION ".gz"	     /* compress's extension */
+ 
+ /* An example of one alternative you might want to use: */
+ /* # define COMPRESS "/usr/local/bin/gzip" */   /* FSF gzip compression */
+@@ -201,7 +203,7 @@
+  *	a tar-like file, thus making a neater installation.  See *conf.h
+  *	for detailed configuration.
+  */
+-/* #define DLB */             /* not supported on all platforms */
++#define DLB		/* not supported on all platforms */
+ 
+ /*
+  *	Defining INSURANCE slows down level changes, but allows games that
+@@ -316,7 +318,7 @@
+  * functions that have been macroized.
+  */
+ /* WAC Can be defined under DJGPP,  even though it's DOS*/
+-/*#define VISION_TABLES */ /* use vision tables generated at compile time */
++#define VISION_TABLES	/* use vision tables generated at compile time */
+ #ifndef VISION_TABLES
+ # ifndef NO_MACRO_CPATH
+ #  define MACRO_CPATH	/* use clear_path macros instead of functions */
+@@ -337,7 +339,7 @@
+ 
+ /* dungeon levels */
+ #define WALLIFIED_MAZE	/* Fancy mazes - Jean-Christophe Collet */
+-/* #define REINCARNATION */     /* Special Rogue-like levels */
++#define REINCARNATION	/* Special Rogue-like levels */
+ #define BLACKMARKET     /* Massimo Campostrini (campo@sunthpi3.difi.unipi.it) */
+ 
+ /* monsters & objects */
+diff -ruN slashem-0.0.6E4F7.orig/include/unixconf.h slashem-0.0.6E4F7/include/unixconf.h
+--- slashem-0.0.6E4F7.orig/include/unixconf.h	Thu Feb 28 21:57:11 2002
++++ slashem-0.0.6E4F7/include/unixconf.h	Sat Mar 16 23:26:34 2002
+@@ -33,12 +33,12 @@
+ 
+ 
+ /* define any of the following that are appropriate */
+-#define SVR4		/* use in addition to SYSV for System V Release 4 */
++/* #define SVR4	*/	/* use in addition to SYSV for System V Release 4 */
+ 			/* including Solaris 2+ */
+ #define NETWORK		/* if running on a networked system */
+ 			/* e.g. Suns sharing a playground through NFS */
+ /* #define SUNOS4 */	/* SunOS 4.x */
+-/* #define LINUX */	/* Another Unix clone */
++#define LINUX		/* Another Unix clone */
+ /* #define CYGWIN32 */	/* Unix on Win32 -- use with case sensitive defines */
+ /* #define GENIX */	/* Yet Another Unix Clone */
+ /* #define HISX */	/* Bull Unix for XPS Machines */
+@@ -113,7 +113,7 @@
+  * FILE_AREA_DOC	For human-readable documentation
+  */
+ 
+-/* #define FILE_AREAS */		/* Use file areas */
++#define FILE_AREAS		/* Use file areas */
+ 
+ #ifdef FILE_AREAS
+ 
+@@ -135,9 +135,9 @@
+ 
+ #define FILE_AREA_VAR		"/var/games/slashem/"
+ #define FILE_AREA_SAVE		"/var/games/slashem/save/"
+-#define FILE_AREA_SHARE		"/usr/share/games/slashem/"
+-#define FILE_AREA_UNSHARE	"/usr/lib/games/slashem/"
+-#define FILE_AREA_DOC		"/usr/share/doc/slashem/"
++#define FILE_AREA_SHARE		"/usr/share/slashem/"
++#define FILE_AREA_UNSHARE	"/usr/lib/slashem/"
++#define FILE_AREA_DOC		"/usr/share/doc/slashem-0.0.6E4F7/"
+ 
+ #define FILE_AREA_BONES		FILE_AREA_VAR
+ #define FILE_AREA_LEVL		FILE_AREA_VAR
+@@ -174,7 +174,7 @@
+  * If you want the static parts of your playground on a read-only file
+  * system, define VAR_PLAYGROUND to be where the variable parts are kept.
+  */
+-/* #define VAR_PLAYGROUND "/var/lib/games/nethack" */
++#define VAR_PLAYGROUND "/var/games/slashem"
+ 
+ 
+ 
+@@ -195,7 +195,7 @@
+  * "extra output" method is used, but not all systems provide access to
+  * a fine-grained timer.
+  */
+-/* #define TIMED_DELAY */	/* usleep() */
++#define TIMED_DELAY		/* usleep() */
+ #endif
+ 
+ /*

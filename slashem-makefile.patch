@@ -1,0 +1,146 @@
+diff -ruN slashem-0.0.6E4F7a/sys/unix/Makefile.src slashem-0.0.6E4F7/sys/unix/Makefile.src
+--- slashem-0.0.6E4F7a/sys/unix/Makefile.src	Thu Feb 28 21:57:20 2002
++++ slashem-0.0.6E4F7/sys/unix/Makefile.src	Sun Mar 17 01:10:10 2002
+@@ -153,9 +153,9 @@
+ # RedHat 6.1
+ # QTDIR=/usr/lib/qt-2.0.1
+ #
+-QTLIBDIR=$(QTDIR)/lib
+-QTINCDIR=$(QTDIR)/include
+-QTBINDIR=$(QTDIR)/bin
++QTLIBDIR=/usr/X11R6/lib
++QTINCDIR=/usr/X11R6/include/qt
++QTBINDIR=/usr/X11R6/bin
+ # SuSE 6.1
+ # KDELIBDIR=/opt/kde/lib
+ # KDEINCDIR=/opt/kde/include
+@@ -260,8 +260,8 @@
+ PROXYSVROBJ = proxysvc.o proxycb.o callback.o
+ 
+ # Use these declarations if you only want to support the TTY windowing system
+-WINSRC = $(WINTTYSRC)
+-WINOBJ = $(WINTTYOBJ)
++WINSRC = $(WINTTYSRC) $(WINQTSRC) $(WINGTKSRC)
++WINOBJ = $(WINTTYOBJ) $(WINQTOBJ) $(WINGTKSRC)
+ # Use these declarations if you want to support the X11 windowing system
+ # WINSRC = $(WINTTYSRC) $(WINX11SRC)
+ # WINOBJ = $(WINTTYOBJ) $(WINX11OBJ)
+@@ -292,8 +292,8 @@
+ # WINTTYLIB = -ltermcap
+ # WINTTYLIB = -lcurses
+ # WINTTYLIB = -lcurses16
+-# WINTTYLIB = -lncurses
+-WINTTYLIB = -ltermlib
++WINTTYLIB = -lncurses
++# WINTTYLIB = -ltermlib
+ #
+ # libraries for X11
+ # If USE_XPM is defined in config.h, you will also need -lXpm here.
+@@ -324,7 +324,7 @@
+ WINPROXYLIB =
+ 
+ # Use this declaration if you only want to support the TTY windowing system
+-WINLIB = $(WINTTYLIB)
++WINLIB = $(WINTTYLIB) $(WINQTLIB) $(WINGTKLIB)
+ # Use this declaration if you want to support the X11 windowing system
+ # WINLIB = $(WINTTYLIB) $(WINX11LIB)
+ # Use this declaration if you want to support the Qt windowing system
+@@ -465,7 +465,7 @@
+ 
+ Sysunix:	$(HOBJ) Makefile
+ 	@echo "Loading ..."
+-	@$(CC) $(LFLAGS) -o $(GAME) $(HOBJ) $(WINLIB) $(LIBS)
++	@$(CC) $(WINGTKCFLAGS) -I../include $(LFLAGS) -o $(GAME) $(HOBJ) $(WINLIB) $(LIBS)
+ 	@touch Sysunix
+ 
+ Sys3B2:	$(HOBJ) Makefile
+diff -ruN slashem-0.0.6E4F7a/sys/unix/Makefile.top slashem-0.0.6E4F7/sys/unix/Makefile.top
+--- slashem-0.0.6E4F7a/sys/unix/Makefile.top	Thu Feb 28 21:56:58 2002
++++ slashem-0.0.6E4F7/sys/unix/Makefile.top	Sun Mar 17 01:11:17 2002
+@@ -14,7 +14,7 @@
+ # MAKE = make
+ 
+ # make NetHack
+-PREFIX   = /usr
++PREFIX   = $(DESTDIR)/usr
+ GAME     = slashem
+ # GAME     = slashem.prg
+ GAMEUID  = games
+@@ -38,16 +38,16 @@
+ # These must agree with the definitions in unixconf.h
+ 
+ # Defs. for non file areas support.
+-GAMEDIR  = $(PREFIX)/local/slashemdir
+-VARDIR = $(GAMEDIR)
+-FILE_AREA_VAR = $(VARDIR)
+-FILE_AREA_SAVE = $(VARDIR)/save
+-FILE_AREA_SHARE = $(GAMEDIR)
+-FILE_AREA_UNSHARE = $(GAMEDIR)
+-FILE_AREA_DOC = $(GAMEDIR)
+-FILE_AREA_BONES = $(FILE_AREA_VAR)
+-FILE_AREA_LEVL = $(FILE_AREA_VAR)
+-SHELLDIR = $(PREFIX)/local/bin
++#GAMEDIR  = $(PREFIX)/local/slashemdir
++#VARDIR = $(GAMEDIR)
++#FILE_AREA_VAR = $(VARDIR)
++#FILE_AREA_SAVE = $(VARDIR)/save
++#FILE_AREA_SHARE = $(GAMEDIR)
++#FILE_AREA_UNSHARE = $(GAMEDIR)
++#FILE_AREA_DOC = $(GAMEDIR)
++#FILE_AREA_BONES = $(FILE_AREA_VAR)
++#FILE_AREA_LEVL = $(FILE_AREA_VAR)
++#SHELLDIR = $(PREFIX)/local/bin
+ 
+ # Defs. compatible with Linux's FSSTND 1.2
+ # FILE_AREA_VAR = /var/lib/games/slashem
+@@ -60,14 +60,14 @@
+ # SHELLDIR = /usr/games
+ 
+ # Defs. compatible with FHS 2.0
+-# FILE_AREA_VAR = /var/games/slashem
+-# FILE_AREA_SAVE = /var/games/slashem/save
+-# FILE_AREA_SHARE = /usr/share/games/slashem
+-# FILE_AREA_UNSHARE = /usr/lib/games/slashem
+-# FILE_AREA_DOC = /usr/share/doc/slashem
+-# FILE_AREA_BONES = $(FILE_AREA_VAR)
+-# FILE_AREA_LEVL = $(FILE_AREA_VAR)
+-# SHELLDIR = /usr/games
++FILE_AREA_VAR = $(DESTDIR)/var/games/slashem
++FILE_AREA_SAVE = $(DESTDIR)/var/games/slashem/save
++FILE_AREA_SHARE = $(DESTDIR)/usr/share/slashem
++FILE_AREA_UNSHARE = $(DESTDIR)/usr/lib/slashem
++FILE_AREA_DOC = $(DESTDIR)/usr/share/doc/slashem-0.0.6E4F7
++FILE_AREA_BONES = $(FILE_AREA_VAR)
++FILE_AREA_LEVL = $(FILE_AREA_VAR)
++SHELLDIR = $(DESTDIR)/usr/games
+ 
+ # KDEDIR = /opt/kde
+ # SHELLDIR = $(KDEDIR)/bin
+@@ -89,7 +89,7 @@
+ # CNF_SHARE_DATND = $(CNF_SHARE_X11ND)
+ # CNF_SHARE_DATND = $(CNF_SHARE_QTND)
+ # CNF_SHARE_DATND = $(CNF_SHARE_GTKND)
+-CNF_SHARE_DATND =
++CNF_SHARE_DATND = $(CNF_SHARE_GTKND)
+ 
+ CNF_SHARE_DATD = data oracles options quest.dat rumors
+ CNF_SHARE_DAT = $(CNF_SHARE_DATD) $(CNF_SHARE_DATND)
+@@ -105,8 +105,8 @@
+ # other permission-related reasons.  If that happens, you may want to set the
+ # command to "true", which is a no-op. Note that disabling chown or chgrp
+ # will only work if setuid (or setgid) behavior is not desired or required.
+-CHOWN = chown
+-CHGRP = chgrp
++CHOWN = true
++CHGRP = true
+ 
+ #
+ # end of configuration
+@@ -244,6 +244,7 @@
+ 	-rm -f $(SHELLDIR)/$(GAME)
+ 	sed -e 's;/usr/games/lib/nethackdir;$(FILE_AREA_UNSHARE);' \
+ 		-e 's;HACKDIR/nethack;HACKDIR/$(GAME);' \
++		-e 's;$(DESTDIR);;' \
+ 		< sys/unix/nethack.sh \
+ 		> $(SHELLDIR)/$(GAME)
+ # set up their permissions

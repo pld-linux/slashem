@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Slash'EM
+Comment=Variant of the roguelike game, NetHack
+Comment[pl]=Wariant Nethacka
+Icon=slashem.png
+Exec=/usr/games/slashem
+Terminal=0
+Type=Application
