@@ -67,7 +67,7 @@ Requires:	%{name} = %{version}
 3D tiles for Slash'EM. They are ugly and have nothing to do with
 roguelike spirit.
 
-%description 3dtiles
+%description 3dtiles -l pl
 Kafelki trójwymiarowe dla Slash'EM. S± obciachowe i nie maj± nic
 wspólnego z duchem gier roguelike.
 
