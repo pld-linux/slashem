@@ -2,7 +2,7 @@
 Summary:	Variant of the roguelike game, NetHack
 Summary(pl):	Wariant Nethacka
 Name:		slashem
-Version:	0.0.6E4F7
+Version:	0.0.6E4F8
 Release:	1
 License:	Nethack GPL
 Group:		Applications/Games
@@ -12,6 +12,7 @@ Source2:	%{name}.png
 Source3:	%{name}rc.gz
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-makefile.patch
+Patch2:		%{name}-qt3.patch
 URL:		http://avrc.city.ac.uk/nethack/slashem.html
 Requires:	/bin/gzip
 BuildRequires:	XFree86-devel
@@ -42,7 +43,7 @@ wiêcej poziomów lochu, wiêcej profesji i wiêcej ras. Dodaje us³ugi
 sklepikarzy, techniki specyficzne dla profesji i klasy, oraz
 niewidzialne przedmioty.
 
-Uwaga! Nawet nie próbuj graæ w Slash'EM, je¿eli nie widzia³e¶
+Uwaga! Nawet nie próbuj graæ w t± torturowniê, je¿eli nie widzia³e¶
 wcze¶niej Nethacka.
 
 %package bigtiles
@@ -75,6 +76,7 @@ wspólnego z duchem gier roguelike.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 install %{SOURCE3} .
 
 %build
@@ -83,7 +85,8 @@ install %{SOURCE3} .
 %{__make} all \
 	CFLAGS="%{rpmcflags} -I../include -I%{_includedir}/ncurses" \
 	LFLAGS="%{rpmldflags}" \
-	CC="%{__cc}"
+	CC="%{__cc}" \
+	CXX="%{__cxx}"
 
 %{__make} -C util recover \
 	CFLAGS="%{rpmcflags} -I../include" \
