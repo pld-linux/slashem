@@ -7,3 +7,4 @@ Icon=slashem.png
 Exec=/usr/games/slashem
 Terminal=false
 Type=Application
+# vi: encoding=utf-8
