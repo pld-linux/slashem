@@ -3,7 +3,7 @@ Summary:	Variant of the roguelike game, NetHack
 Summary(pl):	Wariant Nethacka
 Name:		slashem
 Version:	0.0.6E4F8
-Release:	1
+Release:	2
 License:	Nethack GPL
 Group:		Applications/Games
 Source0:	http://avrc.city.ac.uk/nethack/slashem/se%{_ver}.tar.gz
@@ -21,6 +21,7 @@ BuildRequires:	flex
 BuildRequires:	gtk+-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	qt-devel
+Requires:	applnk >= 1.5.13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_nhdir	/usr/lib/slashem
@@ -95,14 +96,14 @@ install %{SOURCE3} .
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_applnkdir}/Games/Roguelike,%{_mandir}/man6}
+install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_applnkdir}/Games/RPG,%{_mandir}/man6}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install doc/slashem.6	$RPM_BUILD_ROOT%{_mandir}/man6
 install util/recover	$RPM_BUILD_ROOT%{_nhdir}
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Games/Roguelike
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Games/RPG
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %clean
@@ -128,7 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(664,root,games) %config(noreplace) %verify(not,md5,size,mtime) %{_dyndir}/record
 %attr(664,root,games) %config(noreplace) %verify(not,md5,size,mtime) %{_dyndir}/logfile
 %{_mandir}/man6/*
-%{_applnkdir}/Games/Roguelike/*
+%{_applnkdir}/Games/RPG/*
 %{_pixmapsdir}/*
 
 %files bigtiles
