@@ -58,8 +58,8 @@ Requires:	%{name} = %{version}
 Kafelki 32x32 dla Slash'EM.
 
 %package 3dtiles
-Summary:	3D tiles.
-Summary(pl):	Kafelki trójwymiarowe.
+Summary:	3D tiles
+Summary(pl):	Kafelki trójwymiarowe
 Group:		Applications/Games
 Requires:	%{name} = %{version}
 
