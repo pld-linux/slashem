@@ -1,7 +1,7 @@
-diff -ruN slashem-0.0.6E4F7a/sys/unix/Makefile.src slashem-0.0.6E4F7/sys/unix/Makefile.src
---- slashem-0.0.6E4F7a/sys/unix/Makefile.src	Thu Feb 28 21:57:20 2002
-+++ slashem-0.0.6E4F7/sys/unix/Makefile.src	Sun Mar 17 01:10:10 2002
-@@ -153,9 +153,9 @@
+diff -ruN slashem-0.0.6E4F8-/sys/unix/Makefile.src slashem-0.0.6E4F8/sys/unix/Makefile.src
+--- slashem-0.0.6E4F8-/sys/unix/Makefile.src	Mon Apr  1 00:06:31 2002
++++ slashem-0.0.6E4F8/sys/unix/Makefile.src	Wed Aug 28 18:51:56 2002
+@@ -154,9 +154,9 @@
  # RedHat 6.1
  # QTDIR=/usr/lib/qt-2.0.1
  #
@@ -14,9 +14,21 @@ diff -ruN slashem-0.0.6E4F7a/sys/unix/Makefile.src slashem-0.0.6E4F7/sys/unix/Ma
  # SuSE 6.1
  # KDELIBDIR=/opt/kde/lib
  # KDEINCDIR=/opt/kde/include
-@@ -260,8 +260,8 @@
- PROXYSVROBJ = proxysvc.o proxycb.o callback.o
+@@ -169,9 +169,9 @@
+ # The Qt and Be window systems are written in C++, while the rest of
+ # NetHack is standard C.  If using Qt, uncomment the LD line here to get
+ # the C++ libraries linked in.
+-CXXFLAGS = $(CFLAGS) -I. -I$(QTINCDIR)
++CXXFLAGS = $(CFLAGS) -I. -I/usr/X11R6/include/qt
+ # Qt is C++, so define the compiler and linker thus required:
+-CXX=g++
++#CXX=g++
+ #LD=g++
  
+ # GTK windowing system
+@@ -232,8 +232,8 @@
+ #WINBEOBJ = winbe.o NHWindow.o NHMenuWindow.o NHMapWindow.o nhwin.a
+ #
  # Use these declarations if you only want to support the TTY windowing system
 -WINSRC = $(WINTTYSRC)
 -WINOBJ = $(WINTTYOBJ)
@@ -25,7 +37,7 @@ diff -ruN slashem-0.0.6E4F7a/sys/unix/Makefile.src slashem-0.0.6E4F7/sys/unix/Ma
  # Use these declarations if you want to support the X11 windowing system
  # WINSRC = $(WINTTYSRC) $(WINX11SRC)
  # WINOBJ = $(WINTTYOBJ) $(WINX11OBJ)
-@@ -292,8 +292,8 @@
+@@ -259,8 +259,8 @@
  # WINTTYLIB = -ltermcap
  # WINTTYLIB = -lcurses
  # WINTTYLIB = -lcurses16
@@ -36,8 +48,8 @@ diff -ruN slashem-0.0.6E4F7a/sys/unix/Makefile.src slashem-0.0.6E4F7/sys/unix/Ma
  #
  # libraries for X11
  # If USE_XPM is defined in config.h, you will also need -lXpm here.
-@@ -324,7 +324,7 @@
- WINPROXYLIB =
+@@ -288,7 +288,7 @@
+ WINBELIB = -lbe
  
  # Use this declaration if you only want to support the TTY windowing system
 -WINLIB = $(WINTTYLIB)
@@ -45,7 +57,7 @@ diff -ruN slashem-0.0.6E4F7a/sys/unix/Makefile.src slashem-0.0.6E4F7/sys/unix/Ma
  # Use this declaration if you want to support the X11 windowing system
  # WINLIB = $(WINTTYLIB) $(WINX11LIB)
  # Use this declaration if you want to support the Qt windowing system
-@@ -465,7 +465,7 @@
+@@ -429,7 +429,7 @@
  
  Sysunix:	$(HOBJ) Makefile
  	@echo "Loading ..."
@@ -54,9 +66,9 @@ diff -ruN slashem-0.0.6E4F7a/sys/unix/Makefile.src slashem-0.0.6E4F7/sys/unix/Ma
  	@touch Sysunix
  
  Sys3B2:	$(HOBJ) Makefile
-diff -ruN slashem-0.0.6E4F7a/sys/unix/Makefile.top slashem-0.0.6E4F7/sys/unix/Makefile.top
---- slashem-0.0.6E4F7a/sys/unix/Makefile.top	Thu Feb 28 21:56:58 2002
-+++ slashem-0.0.6E4F7/sys/unix/Makefile.top	Sun Mar 17 01:11:17 2002
+diff -ruN slashem-0.0.6E4F8-/sys/unix/Makefile.top slashem-0.0.6E4F8/sys/unix/Makefile.top
+--- slashem-0.0.6E4F8-/sys/unix/Makefile.top	Mon Apr  1 00:06:10 2002
++++ slashem-0.0.6E4F8/sys/unix/Makefile.top	Wed Aug 28 18:47:01 2002
 @@ -14,7 +14,7 @@
  # MAKE = make
  
