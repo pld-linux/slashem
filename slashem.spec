@@ -1,4 +1,5 @@
-%define		_ver	%(echo %{version} | tr -d . | tr EF ef)
+%define		_ver_nodots	%(echo %{version} | tr -d)
+%define		_ver		%(echo %{_ver_nodots} | tr EF ef)
 Summary:	Variant of the roguelike game, NetHack
 Summary(pl):	Wariant Nethacka
 Name:		slashem
