@@ -14,12 +14,12 @@ Patch0:		%{name}-config.patch
 Patch1:		%{name}-makefile.patch
 URL:		http://avrc.city.ac.uk/nethack/slashem.html
 Requires:	/bin/gzip
+BuildRequires:	XFree86-devel
 BuildRequires:	bison
 BuildRequires:	flex
-BuildRequires:	XFree86-devel
+BuildRequires:	gtk+-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	qt-devel
-BuildRequires:	gtk+-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_nhdir	/usr/lib/slashem
@@ -99,9 +99,6 @@ install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_applnkdir}/Games/Roguelike,%{_mandi
 install doc/slashem.6	$RPM_BUILD_ROOT%{_mandir}/man6
 install util/recover	$RPM_BUILD_ROOT%{_nhdir}
 
-gzip -9nf doc/Guidebook doc/strategy.txt README.gtk history.txt license \
-	readme.s6 readme.txt slamfaq.txt
-
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Games/Roguelike
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
@@ -110,13 +107,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/Guidebook doc/strategy.txt README.gtk history.txt license
+%doc doc/{Guidebook,strategy.txt} README.gtk history.txt license
 %doc readme.s6 readme.txt slamfaq.txt
-
 %attr(2755,root,games) %{_prefix}/games/slashem
 %attr(2755,root,games) %{_nhdir}/slashem
 %attr(2755,root,games) %{_nhdir}/recover
-
 %dir %{_nhdir}
 %dir %{_datadir}/slashem
 %{_nhdir}/nhushare
@@ -124,15 +119,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/slashem/gtkrc
 %{_datadir}/slashem/nhshare
 %{_datadir}/slashem/x11tiles
-
 %attr(2775,root,games) %dir %{_dyndir}
 %attr(2775,root,games) %dir %{_dyndir}/save
 %attr(664,root,games) %{_dyndir}/perm
 %attr(664,root,games) %config(noreplace) %verify(not,md5,size,mtime) %{_dyndir}/record
 %attr(664,root,games) %config(noreplace) %verify(not,md5,size,mtime) %{_dyndir}/logfile
-
 %{_mandir}/man6/*
-
 %{_applnkdir}/Games/Roguelike/*
 %{_pixmapsdir}/*
 
