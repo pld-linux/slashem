@@ -7,9 +7,11 @@ Release:	2
 License:	Nethack GPL
 Group:		Applications/Games
 Source0:	http://avrc.city.ac.uk/nethack/slashem/se%{_ver}.tar.gz
+# Source0-md5:	2abd847d4f5fc426d6c7ed5a97b0de99
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	%{name}rc.gz
+# Source3-md5:	8161a6a7b9633be446dd07e19eeb243b
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-makefile.patch
 Patch2:		%{name}-qt3.patch
