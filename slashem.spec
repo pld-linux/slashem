@@ -22,8 +22,8 @@ BuildRequires:	qt-devel
 BuildRequires:	gtk+-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define _nhdir	/usr/lib/slashem
-%define _dyndir	/var/games/slashem
+%define		_nhdir	/usr/lib/slashem
+%define		_dyndir	/var/games/slashem
 
 %description
 Slash'EM (SuperLotsaAddedStuffHack - Extended Magic) is an extension
@@ -110,7 +110,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz doc/*.gz
+%doc doc/Guidebook doc/strategy.txt README.gtk history.txt license
+%doc readme.s6 readme.txt slamfaq.txt
 
 %attr(2755,root,games) %{_prefix}/games/slashem
 %attr(2755,root,games) %{_nhdir}/slashem
