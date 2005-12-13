@@ -17,13 +17,13 @@ Patch0:		%{name}-config.patch
 Patch1:		%{name}-makefile.patch
 Patch2:		%{name}-qt3.patch
 URL:		http://avrc.city.ac.uk/nethack/slashem.html
-Requires:	/bin/gzip
 BuildRequires:	XFree86-devel
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gtk+-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	qt-devel
+Requires:	/bin/gzip
 Requires:	applnk >= 1.5.13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -101,7 +101,8 @@ install %{SOURCE3} .
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_applnkdir}/Games/RPG,%{_mandir}/man6}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install doc/slashem.6	$RPM_BUILD_ROOT%{_mandir}/man6
 install util/recover	$RPM_BUILD_ROOT%{_nhdir}
@@ -129,8 +130,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(2775,root,games) %dir %{_dyndir}
 %attr(2775,root,games) %dir %{_dyndir}/save
 %attr(664,root,games) %{_dyndir}/perm
-%attr(664,root,games) %config(noreplace) %verify(not,md5,size,mtime) %{_dyndir}/record
-%attr(664,root,games) %config(noreplace) %verify(not,md5,size,mtime) %{_dyndir}/logfile
+%attr(664,root,games) %config(noreplace) %verify(not md5 mtime size) %{_dyndir}/record
+%attr(664,root,games) %config(noreplace) %verify(not md5 mtime size) %{_dyndir}/logfile
 %{_mandir}/man6/*
 %{_applnkdir}/Games/RPG/*
 %{_pixmapsdir}/*
