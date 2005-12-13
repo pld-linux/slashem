@@ -87,7 +87,7 @@ install %{SOURCE3} .
 ./sys/unix/setup.sh links
 
 %{__make} all \
-	CFLAGS="%{rpmcflags} -I../include -I%{_includedir}/ncurses" \
+	CFLAGS="%{rpmcflags} -I../include -I/usr/include/ncurses" \
 	LFLAGS="%{rpmldflags}" \
 	CC="%{__cc}" \
 	CXX="%{__cxx}"
