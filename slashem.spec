@@ -1,9 +1,9 @@
+%define		_ver_nodots	%(echo %{version} | tr -d .)
+%define		_ver		%(echo %{_ver_nodots} | tr EF ef)
 Summary:	Variant of the roguelike game, NetHack
 Summary(pl):	Wariant Nethacka
 Name:		slashem
 Version:	0.0.6E4F8
-%define		_ver_nodots	%(echo %{version} | tr -d .)
-%define		_ver		%(echo %{_ver_nodots} | tr EF ef)
 Release:	2
 License:	Nethack GPL
 Group:		Applications/Games
@@ -54,7 +54,7 @@ wcze¶niej Nethacka.
 Summary:	Big tiles
 Summary(pl):	Du¿e kafelki
 Group:		Applications/Games
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description bigtiles
 32x32 tiles for Slash'EM.
@@ -66,7 +66,7 @@ Kafelki 32x32 dla Slash'EM.
 Summary:	3D tiles
 Summary(pl):	Kafelki trójwymiarowe
 Group:		Applications/Games
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description 3dtiles
 3D tiles for Slash'EM. They are ugly and have nothing to do with
