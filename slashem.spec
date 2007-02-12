@@ -1,7 +1,7 @@
 %define		_ver_nodots	%(echo %{version} | tr -d .)
 %define		_ver		%(echo %{_ver_nodots} | tr EF ef)
 Summary:	Variant of the roguelike game, NetHack
-Summary(pl):	Wariant Nethacka
+Summary(pl.UTF-8):   Wariant Nethacka
 Name:		slashem
 Version:	0.0.6E4F8
 Release:	2
@@ -39,32 +39,32 @@ specific techniques and invisible objects.
 
 Warning! Don't even try to play Slash'EM if you never seen Nethack.
 
-%description -l pl
+%description -l pl.UTF-8
 Slash'EM (SuperLotsaAddedStuffHack - Extended Magic) jest
-rozszerzeniem SLASHa, który jest rozszerzeniem Nethacka, ogromnie
-popularnej gry roguelike. Dodaje wiêcej potworów, wiêcej przedmiotów,
-wiêcej poziomów lochu, wiêcej profesji i wiêcej ras. Dodaje us³ugi
+rozszerzeniem SLASHa, ktÃ³ry jest rozszerzeniem Nethacka, ogromnie
+popularnej gry roguelike. Dodaje wiÄ™cej potworÃ³w, wiÄ™cej przedmiotÃ³w,
+wiÄ™cej poziomÃ³w lochu, wiÄ™cej profesji i wiÄ™cej ras. Dodaje usÅ‚ugi
 sklepikarzy, techniki specyficzne dla profesji i klasy, oraz
 niewidzialne przedmioty.
 
-Uwaga! Nawet nie próbuj graæ w t± torturowniê, je¿eli nie widzia³e¶
-wcze¶niej Nethacka.
+Uwaga! Nawet nie prÃ³buj graÄ‡ w tÄ… torturowniÄ™, jeÅ¼eli nie widziaÅ‚eÅ›
+wczeÅ›niej Nethacka.
 
 %package bigtiles
 Summary:	Big tiles
-Summary(pl):	Du¿e kafelki
+Summary(pl.UTF-8):   DuÅ¼e kafelki
 Group:		Applications/Games
 Requires:	%{name} = %{version}-%{release}
 
 %description bigtiles
 32x32 tiles for Slash'EM.
 
-%description bigtiles -l pl
+%description bigtiles -l pl.UTF-8
 Kafelki 32x32 dla Slash'EM.
 
 %package 3dtiles
 Summary:	3D tiles
-Summary(pl):	Kafelki trójwymiarowe
+Summary(pl.UTF-8):   Kafelki trÃ³jwymiarowe
 Group:		Applications/Games
 Requires:	%{name} = %{version}-%{release}
 
@@ -72,9 +72,9 @@ Requires:	%{name} = %{version}-%{release}
 3D tiles for Slash'EM. They are ugly and have nothing to do with
 roguelike spirit.
 
-%description 3dtiles -l pl
-Kafelki trójwymiarowe dla Slash'EM. S± obciachowe i nie maj± nic
-wspólnego z duchem gier roguelike.
+%description 3dtiles -l pl.UTF-8
+Kafelki trÃ³jwymiarowe dla Slash'EM. SÄ… obciachowe i nie majÄ… nic
+wspÃ³lnego z duchem gier roguelike.
 
 %prep
 %setup -q
