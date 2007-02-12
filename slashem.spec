@@ -1,7 +1,7 @@
 %define		_ver_nodots	%(echo %{version} | tr -d .)
 %define		_ver		%(echo %{_ver_nodots} | tr EF ef)
 Summary:	Variant of the roguelike game, NetHack
-Summary(pl.UTF-8):   Wariant Nethacka
+Summary(pl.UTF-8):	Wariant Nethacka
 Name:		slashem
 Version:	0.0.6E4F8
 Release:	2
@@ -52,7 +52,7 @@ wcześniej Nethacka.
 
 %package bigtiles
 Summary:	Big tiles
-Summary(pl.UTF-8):   Duże kafelki
+Summary(pl.UTF-8):	Duże kafelki
 Group:		Applications/Games
 Requires:	%{name} = %{version}-%{release}
 
@@ -64,7 +64,7 @@ Kafelki 32x32 dla Slash'EM.
 
 %package 3dtiles
 Summary:	3D tiles
-Summary(pl.UTF-8):   Kafelki trójwymiarowe
+Summary(pl.UTF-8):	Kafelki trójwymiarowe
 Group:		Applications/Games
 Requires:	%{name} = %{version}-%{release}
 
