@@ -1,9 +1,8 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=Slash'EM
 Comment=Variant of the roguelike game, NetHack
 Comment[pl]=Wariant Nethacka
-Icon=slashem.png
+Icon=slashem
 Exec=/usr/games/slashem
 Terminal=false
 Type=Application
